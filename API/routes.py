@@ -5,6 +5,11 @@ from handler.stream import Stream
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify('API 1.0')
+
+
 @app.route('/checkStream', methods=['POST'])
 def check_stream():
     check = False
