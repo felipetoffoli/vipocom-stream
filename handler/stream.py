@@ -1,5 +1,6 @@
 import os
 import re
+import glob
 
 
 class Stream:
@@ -21,11 +22,15 @@ class Stream:
             'main.js.save', 'offiline.png',
             'style.css'
         ]
-        folder_files = os.listdir(r'/home/stream/hls')
-        for default_file in default_files.copy():
-            try:
-                if default_file in folder_files:
-                    folder_files.remove(default_file)
-            except Exception as e:
-                print(e)
-        return {'stremers': folder_files}
+        # folder_files = os.listdir(r'/home/stream/hls')
+        folder_files = glob.glob(r'/home/stream/hls/*.m3u8')
+        key_stremers = []
+        if folder_files:
+            for file in folder_files:
+                bar_split = file.split('/')
+                name_with_m3u8 = bar_split[len(bar_split) -1]
+                m3u8_split = name_with_m3u8.split('.m3u8')
+                key = m3u8_split[len(m3u8_split) -1]
+                key_stremers.push(key)
+
+        return {'stremers': key_stremers}
