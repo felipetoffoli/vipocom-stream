@@ -22,9 +22,10 @@ class Stream:
             'style.css'
         ]
         folder_files = os.listdir(r'/home/stream/hls')
-        try:
-            for default_file in default_files:
-                folder_files.pop[default_file]
-        except:
-            pass
-        return {'stremers':folder_files}
+        for default_file in default_files.copy():
+            try:
+                if default_file in folder_files:
+                    folder_files.remove(default_file)
+            except Exception as e:
+                print(e)
+        return {'stremers': folder_files}
