@@ -15,7 +15,7 @@ class Stream:
         return check
 
     @staticmethod
-    def stremer_all(key_stream):
+    def stremer_all():
         default_files = [
             'index.html', 'main.js',
             'main.js.save', 'offiline.png',
