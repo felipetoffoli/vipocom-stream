@@ -30,7 +30,7 @@ class Stream:
                 bar_split = file.split('/')
                 name_with_m3u8 = bar_split[len(bar_split) -1]
                 m3u8_split = name_with_m3u8.split('.m3u8')
-                key = m3u8_split[len(m3u8_split) -1]
+                key = m3u8_split[0]
                 key_stremers.append(key)
 
         return {'stremers': key_stremers}
