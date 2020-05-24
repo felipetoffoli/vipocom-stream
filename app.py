@@ -18,5 +18,12 @@ def check_stream():
         check = stream.check_on(request.json['key'])
     return jsonify({'check':check})
 
+@app.route('/streamer/all', methods=['GET'])
+def all_stremers():
+    stream = Stream()
+    return jsonify(stream.stremer_all()), 200
+
+
+
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port=5000)

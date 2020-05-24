@@ -13,3 +13,18 @@ class Stream:
             if re.search(key_stream, file):
                 check = True
         return check
+
+    @staticmethod
+    def stremer_all(key_stream):
+        default_files = [
+            'index.html', 'main.js',
+            'main.js.save', 'offiline.png',
+            'style.css'
+        ]
+        folder_files = os.listdir(r'/home/stream/hls')
+        try:
+            for default_file in default_files:
+                folder_files.pop[default_file]
+        except:
+            pass
+        return {'stremers':folder_files}
