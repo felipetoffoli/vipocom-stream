@@ -17,11 +17,6 @@ class Stream:
 
     @staticmethod
     def stremer_all():
-        default_files = [
-            'index.html', 'main.js',
-            'main.js.save', 'offiline.png',
-            'style.css'
-        ]
         # folder_files = os.listdir(r'/home/stream/hls')
         folder_files = glob.glob(r'/home/stream/hls/*.m3u8')
         key_stremers = []
