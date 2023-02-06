@@ -3,8 +3,44 @@ version: '3'
 services:
   stream_hsl:
     # image: ghcr.io/codions/docker-stream-server/docker-stream-server:latest
-    image: alqutami/rtmp-hls
+    # image: alqutami/rtmp-hls
+    build: 
+      context: ./docker-hls-stream
     container_name: stream_hsl
+    restart: always
+    volumes:
+      - ./docker-hls-stream/static:/hls/
+    environment:
+      TZ: America/Cuiaba
+    networks:
+      - stream
     ports:
-      - 1935:1935 
-      - 8080:8080 
+      - 1935:1935
+      # - 47151:80
+  api:
+    container_name: api_stream
+    networks:
+      - stream
+    build: ./api
+    restart: always
+    volumes: 
+      - ./docker-hls-stream/static:/home/stream
+    environment:
+      TZ: America/Cuiaba
+    # ports:
+    #   - 5000:5000
+  
+  proxy:
+    image: nginx
+    restart: always
+    networks:
+      - stream
+    container_name: proxy
+    volumes:
+      - ./proxy/stream.conf:/etc/nginx/conf.d/default.conf
+    ports:
+    - 8081:80
+    environment:
+      TZ: America/Cuiaba
+networks:
+  stream:
