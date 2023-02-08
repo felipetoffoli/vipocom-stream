@@ -9,7 +9,8 @@ services:
     container_name: stream_hsl
     restart: always
     volumes:
-      - ./docker-hls-stream/static:/hls/
+#       - ./docker-hls-stream/static:/hls/
+      - /SISTEMAS/docker-hls-stream/static:/hls/
     environment:
       TZ: America/Cuiaba
     networks:
@@ -24,7 +25,8 @@ services:
     build: ./api
     restart: always
     volumes: 
-      - ./docker-hls-stream/static:/home/stream
+#       - ./docker-hls-stream/static:/home/stream
+      - /SISTEMAS/docker-hls-stream:/home/stream
     environment:
       TZ: America/Cuiaba
     # ports:
@@ -37,7 +39,8 @@ services:
       - stream
     container_name: proxy
     volumes:
-      - ./proxy/stream.conf:/etc/nginx/conf.d/default.conf
+#       - ./proxy/stream.conf:/etc/nginx/conf.d/default.conf
+      - /SISTEMAS/proxy/stream.conf:/etc/nginx/conf.d/default.conf
     ports:
     - 80:80
     environment:
