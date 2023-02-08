@@ -1,0 +1,40 @@
+name: Publicacao Producao
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)    
+        required: false
+jobs:
+
+  build:
+
+    runs-on: STREAM-APP
+    steps:
+    - uses: actions/checkout@v3
+    - name: copia arquivos
+      run: |
+        cp -rf ./docker-hls-stream/static/ /SISTEMAS/docker-hls-stream/
+        cp -f ./proxy/stream.conf /SISTEMAS/proxy/
+    - name: build API Producao 
+      run: docker-compose build api; 
+    
+    - name: build STREAM Producao 
+      run: docker-compose build stream_hsl; 
+  
+    - name: up Producao API
+      run: docker-compose up -d api; 
+    - name: up Producao STREAM
+      run: docker-compose up -d STREAM; 
+    - name: up Producao proxy
+      run: docker-compose up -d STREAM;
+    - name: restart Producao proxy
+      run: docker-compose restart STREAM; 
+
+    - name: PRUNE
+      run: docker image prune -f; 
+    
+
