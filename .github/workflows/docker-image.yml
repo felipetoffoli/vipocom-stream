@@ -28,11 +28,11 @@ jobs:
     - name: up Producao API
       run: docker-compose up -d api; 
     - name: up Producao STREAM
-      run: docker-compose up -d STREAM; 
+      run: docker-compose up -d stream_hsl; 
     - name: up Producao proxy
-      run: docker-compose up -d STREAM;
+      run: docker-compose up -d proxy;
     - name: restart Producao proxy
-      run: docker-compose restart STREAM; 
+      run: docker-compose restart proxy; 
 
     - name: PRUNE
       run: docker image prune -f; 
