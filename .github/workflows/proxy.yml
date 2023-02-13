@@ -15,6 +15,9 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
+    - name: copia arquivos
+      run: |
+        cp -f ./proxy/stream.conf /SISTEMAS/proxy/
     - name: Run proxy
       run: docker-compose up -d proxy;
     - name: restart Proxy
