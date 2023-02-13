@@ -45,5 +45,12 @@ services:
     - 80:80
     environment:
       TZ: America/Cuiaba
+
+  certbot:
+    image: certbot/certbot
+    command: certonly --webroot -w /SISTEMAS/docker-hls-stream/static -d transmitir.biz
+    restart: on-failure
+
+
 networks:
   stream:

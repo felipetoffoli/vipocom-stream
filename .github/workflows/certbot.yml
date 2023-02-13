@@ -1,0 +1,21 @@
+name: Renovação Certificado
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)    
+        required: false
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run Certbot
+      run: docker-compose up -d certbot;
+    - name: restart Proxy
+      run: docker-compose restart proxy; 
