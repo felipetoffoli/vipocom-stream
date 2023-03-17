@@ -26,7 +26,7 @@ services:
     restart: always
     volumes: 
 #       - ./docker-hls-stream/static:/home/stream
-      - /SISTEMAS/docker-hls-stream:/home/stream
+      - /SISTEMAS/docker-hls-stream/static:/home/stream
     environment:
       TZ: America/Cuiaba
     # ports:
